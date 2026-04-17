@@ -15,9 +15,14 @@ const stage = new Konva.Stage({
 });
 // create our layer
 const firstLayer = new Konva.Layer();
-
 // add the layer to our stage
 stage.add(firstLayer);
+
+// Transformer
+const tr = new Konva.Transformer();
+firstLayer.add(tr);
+// selected object tracker
+let selected = null;
 
 // adding my rectangle
 const rect = new Konva.Rect({
@@ -58,6 +63,7 @@ firstLayer.draw();
 
 // Adding images using an array due to the large quantity of files
 
+// Flower Array
 const flowers = [
   "assets/Flower1.png",
   "assets/Flower2.png",
@@ -104,9 +110,57 @@ flowers.forEach((path, index) => {
       x: 20 + (index % 3) * 130,
       y: 20 + Math.floor(index / 3) * 130,
       image: imageObj,
-      width: 115,
-      height: 115,
-      draggable: true,
+      width: 150,
+      height: 150,
+      draggable: false,
+    });
+
+    // Drag and Drop feautre
+    flower.on("mouseover", function () {
+      document.body.style.cursor = "pointer";
+    });
+
+    flower.on("mouseout", function () {
+      document.body.style.cursor = "default";
+    });
+
+    //   Creating copy function on click
+    flower.on("mousedown", function () {
+      const pos = this.getAbsolutePosition();
+
+      const cloneImg = new Image();
+      cloneImg.src = path; // ✅ FIXED
+
+      cloneImg.onload = function () {
+        const clone = new Konva.Image({
+          x: pos.x,
+          y: pos.y,
+          image: cloneImg,
+          width: 150,
+          height: 150,
+          draggable: true,
+        });
+
+        clone.on("mouseover", function () {
+          document.body.style.cursor = "pointer";
+        });
+
+        clone.on("mouseout", function () {
+          document.body.style.cursor = "default";
+        });
+
+        // Select and transform
+        clone.on("click", function () {
+          selected = this;
+
+          tr.nodes([this]); // attach transformer
+
+          firstLayer.draw();
+        });
+
+        firstLayer.add(clone);
+        firstLayer.draw();
+      };
     });
 
     firstLayer.add(flower);
@@ -114,22 +168,26 @@ flowers.forEach((path, index) => {
   };
 
   imageObj.src = path;
-
-  //   firstLayer.add(flower);
 });
 
-// Drag and Drop Function
+// Deselect on click background
+stage.on("click", function (e) {
+  if (e.target === stage) {
+    selected = null;
+    tr.nodes([]);
+    firstLayer.draw();
+  }
+});
 
-// add cursor styling
-// yoda.on('mouseover', function () {
-//     document.body.style.cursor = 'pointer';
-//   });
-//   yoda.on('mouseout', function () {
-//     document.body.style.cursor = 'default';
-//   });
+// Transform
+tr.on("transformstart", () => {
+  console.log("transform start");
+});
 
-//   layer.add(yoda);
-// };
-// imageObj.src = flowers;
+tr.on("transform", () => {
+  console.log("transforming");
+});
 
-// stage.add(layer);
+tr.on("transformend", () => {
+  console.log("transform end");
+});
