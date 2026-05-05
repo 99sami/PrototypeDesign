@@ -1,7 +1,7 @@
 main {
   display: flex;
   flex-direction: column;
-  height: 300vh;
+  height: stageContainerHeight;
 }
 
 .stageContainer {
@@ -30,3 +30,7 @@ main {
   
   .flower-item:hover {
     transform: scale(1.1); */
+
+/* body {
+        overflow: hidden;
+      } */
