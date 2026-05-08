@@ -36,7 +36,7 @@ let selected = null;
 const rect = new Konva.Rect({
   x: 0,
   y: 0,
-  width: 450,
+  width: 600,
   height: stageContainerHeight,
   fill: "black",
   // draggable: true
@@ -129,18 +129,18 @@ flowers.forEach((path, index) => {
 
   imageObj.onload = function () {
     // adding in a block
-    const itemsPerPage = 18;
+    const itemsPerPage = 20;
 
     const pageIndex = Math.floor(index / itemsPerPage);
     const indexInPage = index % itemsPerPage;
 
-    const col = indexInPage % 3;
-    const row = Math.floor(indexInPage / 3);
+    const col = indexInPage % 4;
+    const row = Math.floor(indexInPage / 4);
 
     // flowers
     const flower = new Konva.Image({
-      x: 20 + col * 130,
-      y: 20 + row * 130,
+      x: 45 + col * 130,
+      y: 120 + row * 139,
       image: imageObj,
       width: 120,
       height: 120,
@@ -228,7 +228,7 @@ tr.on("transformend", () => {
   console.log("transform end");
 });
 
-// to enhance user ecperience, im going to start by adding pages into the tool to remove having to scroll down to retrive assets.
+// to enhance user experience, im adding pages into the tool to remove having to scroll down to retrive assets.
 
 const nextArrow = new Konva.Text({
   x: stage.width() - 120,
@@ -255,3 +255,33 @@ nextArrow.on("click", () => {
 
   firstLayer.draw();
 });
+
+// adding a title to each page
+// want to lean in heavy with the coquette theme / aesthetics on this one
+const page1Title = new Konva.Text({
+  x: 35,
+  y: 50,
+  text: "𐙚 petals & flowers ˚ ",
+  fontSize: 36,
+  fontFamily: "IM Fell English",
+  fill: "#F9F6EE",
+  fontStyle: "italic",
+});
+
+page1.add(page1Title);
+
+document.fonts.ready.then(() => {
+  firstLayer.draw();
+});
+
+const page2Title = new Konva.Text({
+  x: 120,
+  y: 20,
+  text: "Decorations",
+  fontSize: 32,
+  fontFamily: "Arial",
+  fill: "white",
+  fontStyle: "bold",
+});
+
+page2.add(page2Title);
