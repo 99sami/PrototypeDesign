@@ -139,10 +139,10 @@ flowers.forEach((path, index) => {
 
     // flowers
     const flower = new Konva.Image({
-      x: 45 + col * 130,
+      x: 30 + col * 130,
       y: 120 + row * 139,
       image: imageObj,
-      width: 120,
+      width: 150,
       height: 120,
       draggable: false,
     });
@@ -261,7 +261,7 @@ nextArrow.on("click", () => {
 const page1Title = new Konva.Text({
   x: 35,
   y: 50,
-  text: "𐙚 petals & flowers ˚ ",
+  text: "𐙚   flowers   ˚ ",
   fontSize: 36,
   fontFamily: "IM Fell English",
   fill: "#F9F6EE",
@@ -275,13 +275,13 @@ document.fonts.ready.then(() => {
 });
 
 const page2Title = new Konva.Text({
-  x: 120,
-  y: 20,
-  text: "Decorations",
-  fontSize: 32,
-  fontFamily: "Arial",
-  fill: "white",
-  fontStyle: "bold",
+  x: 35,
+  y: 50,
+  text: "𐙚   wraps    ˚ ",
+  fontSize: 36,
+  fontFamily: "IM Fell English",
+  fill: "#F9F6EE",
+  fontStyle: "italic",
 });
 
 page2.add(page2Title);
