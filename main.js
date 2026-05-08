@@ -18,13 +18,18 @@ const stage = new Konva.Stage({
 // create our layer
 const firstLayer = new Konva.Layer();
 // add the layer to our stage
+// add pages in the stage
 stage.add(firstLayer);
 const page1 = new Konva.Group({ visible: true });
 const page2 = new Konva.Group({ visible: false });
+const page3 = new Konva.Group({ visible: false });
+const page4 = new Konva.Group({ visible: false });
 
 // add pages to layer
 firstLayer.add(page1);
 firstLayer.add(page2);
+firstLayer.add(page3);
+firstLayer.add(page4);
 
 // Transformer
 const tr = new Konva.Transformer();
@@ -46,6 +51,8 @@ const rect = new Konva.Rect({
 // add rectangles to layer
 page1.add(rect.clone());
 page2.add(rect.clone());
+page3.add(rect.clone());
+page4.add(rect.clone());
 
 // draw the layer
 firstLayer.draw();
@@ -95,20 +102,21 @@ const flowers = [
   "assets/Flower19.png",
   "assets/Flower20.png",
   "assets/Flower21.png",
-  "assets/Bouquet1.png",
-  "assets/Bouquet2.png",
-  "assets/Bouquet3.png",
-  "assets/Stem1.png",
-  "assets/Bow1.png",
-  "assets/Bow2.png",
-  "assets/Bow3.png",
-  "assets/Bow4.png",
-  "assets/Bow6.png",
-  "assets/Bow7.png",
-  "assets/Lace1.png",
-  "assets/Lace2.png",
-  "assets/Star1.png",
-  "assets/Star2.png",
+  "assets/Flower22.png",
+  "assets/Flower23.png",
+  "assets/Flower24.png",
+  "assets/Flower25.png",
+  "assets/Flower26.png",
+  "assets/Flower27.png",
+  "assets/Flower28.png",
+  "assets/Flower29.png",
+  "assets/Flower30.png",
+  "assets/Flower31.png",
+  "assets/Flower32.png",
+  "assets/Flower33.png",
+  "assets/Flower34.png",
+  "assets/Flower35.png",
+  "assets/Flower36.png",
 ];
 
 // flowers.forEach((path, index) => {
@@ -244,7 +252,7 @@ nextArrow.zIndex(9999);
 firstLayer.draw();
 
 let currentPage = 0;
-const pages = [page1, page2];
+const pages = [page1, page2, page3, page4];
 
 nextArrow.on("click", () => {
   pages[currentPage].visible(false);
@@ -277,7 +285,7 @@ document.fonts.ready.then(() => {
 const page2Title = new Konva.Text({
   x: 35,
   y: 50,
-  text: "𐙚   wraps    ˚ ",
+  text: "𐙚   stems    ˚ ",
   fontSize: 36,
   fontFamily: "IM Fell English",
   fill: "#F9F6EE",
@@ -285,3 +293,15 @@ const page2Title = new Konva.Text({
 });
 
 page2.add(page2Title);
+
+const page3Title = new Konva.Text({
+  x: 35,
+  y: 50,
+  text: "𐙚   wraps    ˚ ",
+  fontSize: 36,
+  fontFamily: "IM Fell English",
+  fill: "#F9F6EE",
+  fontStyle: "italic",
+});
+
+page3.add(page3Title);
