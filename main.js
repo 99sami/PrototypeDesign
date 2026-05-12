@@ -24,12 +24,14 @@ const page1 = new Konva.Group({ visible: true });
 const page2 = new Konva.Group({ visible: false });
 const page3 = new Konva.Group({ visible: false });
 const page4 = new Konva.Group({ visible: false });
+const page5 = new Konva.Group({ visible: false });
 
 // add pages to layer
 firstLayer.add(page1);
 firstLayer.add(page2);
 firstLayer.add(page3);
 firstLayer.add(page4);
+firstLayer.add(page5);
 
 // Transformer
 const tr = new Konva.Transformer();
@@ -53,6 +55,7 @@ page1.add(rect.clone());
 page2.add(rect.clone());
 page3.add(rect.clone());
 page4.add(rect.clone());
+page5.add(rect.clone());
 
 // draw the layer
 firstLayer.draw();
@@ -149,6 +152,22 @@ const flowers = [
   "assets/Lace14.png",
   "assets/Lace15.png",
   "assets/Lace16.png",
+  "assets/Dec1.png",
+  "assets/Dec2.png",
+  "assets/Dec3.png",
+  "assets/Dec4.png",
+  "assets/Dec5.png",
+  "assets/Dec6.png",
+  "assets/Dec7.png",
+  "assets/Dec8.png",
+  "assets/Dec9.png",
+  "assets/Dec10.png",
+  "assets/Dec11.png",
+  "assets/Dec12.png",
+  "assets/Dec13.png",
+  "assets/Dec14.png",
+  "assets/Dec15.png",
+  "assets/Dec16.png",
 ];
 
 // flowers.forEach((path, index) => {
@@ -242,6 +261,8 @@ flowers.forEach((path, index) => {
       page3.add(flower);
     } else if (pageIndex === 3) {
       page4.add(flower);
+    } else if (pageIndex == 4) {
+      page5.add(flower);
     }
 
     firstLayer.draw();
@@ -288,7 +309,7 @@ nextArrow.zIndex(9999);
 firstLayer.draw();
 
 let currentPage = 0;
-const pages = [page1, page2, page3, page4];
+const pages = [page1, page2, page3, page4, page5];
 
 nextArrow.on("click", () => {
   pages[currentPage].visible(false);
@@ -345,7 +366,7 @@ page3.add(page3Title);
 const page4Title = new Konva.Text({
   x: 35,
   y: 50,
-  text: "𐙚   decorations    ˚ ",
+  text: "𐙚   bows    ˚ ",
   fontSize: 36,
   fontFamily: "IM Fell English",
   fill: "#F9F6EE",
@@ -353,3 +374,15 @@ const page4Title = new Konva.Text({
 });
 
 page4.add(page4Title);
+
+const page5Title = new Konva.Text({
+  x: 35,
+  y: 50,
+  text: "𐙚   decorations    ˚ ",
+  fontSize: 36,
+  fontFamily: "IM Fell English",
+  fill: "#F9F6EE",
+  fontStyle: "italic",
+});
+
+page5.add(page5Title);
