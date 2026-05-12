@@ -97,10 +97,10 @@ const flowers = [
   "assets/Flower14.png",
   "assets/Flower15.png",
   "assets/Flower16.png",
-  "assets/Flower17.png",
-  "assets/Flower18.png",
-  "assets/Flower19.png",
-  "assets/Flower20.png",
+  //   "assets/Flower17.png",
+  //   "assets/Flower18.png",
+  //   "assets/Flower19.png",
+  //   "assets/Flower20.png",
   "assets/Flower21.png",
   "assets/Flower22.png",
   "assets/Flower23.png",
@@ -117,6 +117,38 @@ const flowers = [
   "assets/Flower34.png",
   "assets/Flower35.png",
   "assets/Flower36.png",
+  "assets/Flower37.png",
+  "assets/Flower38.png",
+  "assets/Flower39.png",
+  "assets/Flower40.png",
+  "assets/Flower41.png",
+  "assets/Flower42.png",
+  "assets/Flower43.png",
+  "assets/Flower44.png",
+  "assets/Flower45.png",
+  "assets/Flower46.png",
+  "assets/Flower47.png",
+  "assets/Flower48.png",
+  "assets/Flower49.png",
+  "assets/Flower50.png",
+  "assets/Flower51.png",
+  "assets/Flower52.png",
+  "assets/Lace1.png",
+  "assets/Lace2.png",
+  "assets/Lace3.png",
+  "assets/Lace4.png",
+  "assets/Lace5.png",
+  "assets/Lace6.png",
+  "assets/Lace7.png",
+  "assets/Lace8.png",
+  "assets/Lace9.png",
+  "assets/Lace10.png",
+  "assets/Lace11.png",
+  "assets/Lace12.png",
+  "assets/Lace13.png",
+  "assets/Lace14.png",
+  "assets/Lace15.png",
+  "assets/Lace16.png",
 ];
 
 // flowers.forEach((path, index) => {
@@ -137,7 +169,7 @@ flowers.forEach((path, index) => {
 
   imageObj.onload = function () {
     // adding in a block
-    const itemsPerPage = 20;
+    const itemsPerPage = 16;
 
     const pageIndex = Math.floor(index / itemsPerPage);
     const indexInPage = index % itemsPerPage;
@@ -202,12 +234,16 @@ flowers.forEach((path, index) => {
         firstLayer.draw();
       };
     });
-
     if (pageIndex === 0) {
       page1.add(flower);
-    } else {
+    } else if (pageIndex === 1) {
       page2.add(flower);
+    } else if (pageIndex === 2) {
+      page3.add(flower);
+    } else if (pageIndex === 3) {
+      page4.add(flower);
     }
+
     firstLayer.draw();
   };
 
@@ -305,3 +341,15 @@ const page3Title = new Konva.Text({
 });
 
 page3.add(page3Title);
+
+const page4Title = new Konva.Text({
+  x: 35,
+  y: 50,
+  text: "𐙚   decorations    ˚ ",
+  fontSize: 36,
+  fontFamily: "IM Fell English",
+  fill: "#F9F6EE",
+  fontStyle: "italic",
+});
+
+page4.add(page4Title);
