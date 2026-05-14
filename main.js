@@ -292,6 +292,26 @@ tr.on("transform", () => {
 tr.on("transformend", () => {
   console.log("transform end");
 });
+// adding in a delete / remove feature for assets
+window.addEventListener("keydown", function (e) {
+  // only run function if something is selected
+  if (!selected) return;
+
+  // delete key function
+  if (e.key === "Delete" || e.key === "Backspace") {
+    // remove selected flower
+    selected.destroy();
+
+    // remove transformer selection
+    tr.nodes([]);
+
+    // reset selected tracker
+    selected = null;
+
+    // redraw the layer
+    firstLayer.draw();
+  }
+});
 
 // to enhance user experience, im adding pages into the tool to remove having to scroll down to retrive assets.
 
