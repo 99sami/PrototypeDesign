@@ -199,7 +199,7 @@ flowers.forEach((path, index) => {
     // flowers
     const flower = new Konva.Image({
       x: 30 + col * 130,
-      y: 120 + row * 139,
+      y: 150 + row * 139,
       image: imageObj,
       width: 150,
       height: 120,
@@ -305,7 +305,7 @@ window.addEventListener("keydown", function (e) {
     // remove transformer selection
     tr.nodes([]);
 
-    // reset selected tracker
+    // reset tracker
     selected = null;
 
     // redraw the layer
@@ -315,12 +315,17 @@ window.addEventListener("keydown", function (e) {
 
 // to enhance user experience, im adding pages into the tool to remove having to scroll down to retrive assets.
 
+//  next arrow
+
 const nextArrow = new Konva.Text({
-  x: stage.width() - 120,
-  y: stage.height() - 80,
-  text: "→",
-  fontSize: 50,
-  fill: "red",
+  x: 500,
+  y: stage.height() - 60,
+  //   text: "⋆ ˚｡⋆ ",
+  text: "next",
+  fontSize: 20,
+  fontFamily: "IM Fell English",
+  fontStyle: "italic",
+  fill: "#C9A9A6",
   cursor: "pointer",
 });
 
@@ -328,8 +333,39 @@ firstLayer.add(nextArrow);
 nextArrow.zIndex(9999);
 firstLayer.draw();
 
+// back arrow
+
+const backArrow = new Konva.Text({
+  x: 40,
+  y: stage.height() - 60,
+  text: "back",
+  fontSize: 20,
+  fontFamily: "IM Fell English",
+  fill: "#C9A9A6",
+  fontStyle: "italic",
+  cursor: "pointer",
+});
+
+firstLayer.add(backArrow);
+backArrow.zIndex(9999);
+
 let currentPage = 0;
 const pages = [page1, page2, page3, page4, page5];
+
+// nextArrow.on("click", () => {
+//   pages[currentPage].visible(false);
+
+//   backArrow.on("click", () => {
+//     pages[currentPage].visible(false);
+
+//   currentPage = (currentPage + 1) % pages.length;
+
+//   pages[currentPage].visible(true);
+
+//   firstLayer.draw();
+// });
+
+// next page
 
 nextArrow.on("click", () => {
   pages[currentPage].visible(false);
@@ -341,7 +377,20 @@ nextArrow.on("click", () => {
   firstLayer.draw();
 });
 
+//   previous page
+
+backArrow.on("click", () => {
+  pages[currentPage].visible(false);
+
+  currentPage = (currentPage - 1 + pages.length) % pages.length;
+
+  pages[currentPage].visible(true);
+
+  firstLayer.draw();
+});
+
 // adding a title to each page
+
 // want to lean in heavy with the coquette theme / aesthetics on this one
 const page1Title = new Konva.Text({
   x: 35,
@@ -352,7 +401,7 @@ const page1Title = new Konva.Text({
   fill: "#F9F6EE",
   fontStyle: "italic",
 });
-
+// side note i really love this font , the text is strong feature that ties the aesthetic in
 page1.add(page1Title);
 
 document.fonts.ready.then(() => {
@@ -406,3 +455,40 @@ const page5Title = new Konva.Text({
 });
 
 page5.add(page5Title);
+
+// adding in save image function
+// add button
+
+// const button = document.createElement('button');
+// button.textContent = 'Save as High Quality Image';
+// document.body.appendChild(button);
+// button.addEventListener('click', () => {
+//     // save stage as a high quality image
+//     const dataURL = stage.toDataURL({
+//       pixelRatio: 2 // double resolution
+//     });
+
+//     // create link to download
+//     const link = document.createElement('a');
+//     link.download = 'stage.png';
+//     link.href = dataURL;
+//     document.body.appendChild(link);
+//     link.click();
+//     document.body.removeChild(link);
+//   });
+
+// adding button with HTML and designing it in CSS
+const saveButton = document.getElementById("save-button");
+
+saveButton.addEventListener("click", () => {
+  const dataURL = stage.toDataURL({
+    pixelRatio: 3,
+  });
+
+  const link = document.createElement("a");
+
+  link.download = "my-bouquet.png";
+  link.href = dataURL;
+
+  link.click();
+});
