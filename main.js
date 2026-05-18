@@ -1,11 +1,6 @@
 // find our elements
 const stageContainer = document.getElementById("stage-container");
 
-// let stageContainerWidth = stageContainer.offsetWidth;
-// console.log(stageContainerWidth);
-// find our height
-// console.log(stageContainerHeight)
-
 let stageContainerWidth = window.innerWidth;
 let stageContainerHeight = window.innerHeight;
 
@@ -198,11 +193,11 @@ flowers.forEach((path, index) => {
 
     // flowers
     const flower = new Konva.Image({
-      x: 30 + col * 130,
+      x: 65 + col * 130,
       y: 150 + row * 139,
       image: imageObj,
-      width: 150,
-      height: 120,
+      width: 70,
+      height: 70,
       draggable: false,
     });
 
@@ -224,8 +219,8 @@ flowers.forEach((path, index) => {
 
       cloneImg.onload = function () {
         const clone = new Konva.Image({
-          x: pos.x,
-          y: pos.y,
+          x: 700 + Math.random() * 200,
+          y: 200 + Math.random() * 300,
           image: cloneImg,
           width: 150,
           height: 150,
@@ -241,9 +236,17 @@ flowers.forEach((path, index) => {
         });
 
         // Select and transform
+        // adjusting the layering system, to add an bring layer to front on click
         clone.on("click", function () {
           selected = this;
 
+          // move selected flower to front
+          this.moveToTop();
+
+          // keep transformer above everything else
+          tr.moveToTop();
+
+          // select flower
           tr.nodes([this]);
 
           firstLayer.draw();
